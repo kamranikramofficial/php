@@ -3,22 +3,30 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-
     <title>Discuss Project</title>
     <?php include('./client/commonfiles.php') ?>
   </head>
   <body>
-  <?php include('./client/header.php') ?>
+
+  <?php 
+  session_start();
+  include('./client/header.php') ?>
 <?php
-if (isset($_GET['signup'])) {
+if (
+    isset($_GET['signup']) && 
+    (!isset($_SESSION['user']['username']) || !$_SESSION['user']['username'])
+) {
     include('./client/signup.php');
-} else if (isset($_GET['login'])) {
+} else if (
+    isset($_GET['login']) && 
+    (!isset($_SESSION['user']['username']) || !$_SESSION['user']['username'])
+) {
     include('./client/login.php');
 } else {
-    // Default behavior (optional)
+    // Show default content or dashboard
 }
 ?>
+
 
   </body>
 </html>
