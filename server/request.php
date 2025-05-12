@@ -16,4 +16,15 @@ header("Location: /php-kamran/php");
 } else {
     echo "user is not registered";
 }
+if (isset($_POST['login'])) {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $query = "SELECT * FROM user WHERE email = '$email' AND password = '$password'";
+    $result = $conection->query($query);
+    echo $result->num_rows;
+}
+?>
+
+
+
 ?>
